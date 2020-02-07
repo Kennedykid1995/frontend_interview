@@ -9,9 +9,17 @@ const useStyles = makeStyles(theme => ({
     },
     paper: {
         padding: theme.spacing(2),
+        boxShadow: 'none', 
+        backgroundColor:'#f200ff',
         textAlign: 'center',
-        color: theme.palette.text.secondary
+        color: 'black'
+
     },
+    button:{
+        variant: "contained",
+        backgroundColor: "white",
+        boxShadow: "none"
+    }
 }));
 
 
@@ -19,7 +27,7 @@ export default function Card() {
     const classes = useStyles();
     return (
         <Paper className={classes.paper}>
-        <Button variant="contained" color="primary">View Note</Button>
+            <Button className={classes.button}>Add Note</Button>
         </Paper>
     )
 }
