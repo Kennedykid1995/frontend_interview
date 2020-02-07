@@ -6,7 +6,6 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                home
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <Card />
@@ -15,6 +14,15 @@ export default class Home extends Component {
                         <Card />
                     </Grid>
                     <Grid item xs={6}>
+                        <Card />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Card />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Card />
+                    </Grid>
+                    <Grid item xs={4}>
                         <Card />
                     </Grid>
                 </Grid>
