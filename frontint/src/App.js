@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Home from "./pages/Home"; 
 import Post from './pages/Post'; 
 import Login from "./pages/Login"; 
