@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-
 const useStyles = makeStyles(theme => ({
     root: {
         margin: theme.spacing(1),
@@ -12,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     paper: {
         padding: theme.spacing(2),
         boxShadow: 'none',
-        backgroundColor: '#f200ff',
+        backgroundColor: '#00ffbb',
         textAlign: 'center',
         color: 'black',
         display: "flex",
@@ -24,32 +22,15 @@ const useStyles = makeStyles(theme => ({
         boxShadow: "none",
         margin: 20
     },
-    titleBox: {
-        id: "standard-basic",
-        label: "Standard",
-        margin: 20,
-        
-    },
-    textFeild: {
-        id: "outlined-multiline-static",
-        label: "Multiline",
-        rows: "4",
-        variant: "filled",
-        margin: 20
-    }
 }));
 
-
-export default function Card() {
+export default function Note() {
     const classes = useStyles();
     return (
-        <form className={classes.root}>
+        <div className={classes.root}>
             <Paper className={classes.paper}>
-                <TextField className={classes.titleBox} />
-                <TextField multiline />
-                <Button className={classes.button}>Add Note</Button>
+                <Button className={classes.button}>View Note</Button>
             </Paper>
-        </form>
-
+        </div>
     )
 }
