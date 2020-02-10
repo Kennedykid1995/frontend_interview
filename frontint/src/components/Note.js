@@ -22,6 +22,9 @@ const useStyles = makeStyles(theme => ({
         boxShadow: "none",
         margin: 20
     },
+    noteArea: {
+        textAlign: "left",
+    }
 }));
 
 export default function Note() {
@@ -29,6 +32,7 @@ export default function Note() {
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
+            <p className={classes.noteArea}>fbjdncks d cj cied chjfsdkfj kvdnkvdksn kcsdnfvdjndkn</p>
                 <Button className={classes.button}>View Note</Button>
             </Paper>
         </div>
