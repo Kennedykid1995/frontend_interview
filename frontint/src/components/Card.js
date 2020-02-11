@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Card() {
     const classes = useStyles();
-    
+
     const [newNote, setNewNote] = useState(
         {title: '', content: ''}
     )
@@ -70,6 +70,7 @@ export default function Card() {
                 type='text'
                 value={newNote.title}
                 onChange={handleChange}
+                placeholder="Title"
                 required
                 />
                 <TextField
@@ -78,6 +79,7 @@ export default function Card() {
                  type='text'
                  value={newNote.content}
                  onChange={handleChange}
+                 placeholder="Content"
                  required
                  />
                 <Button type='submit' className={classes.button}>Add Note</Button>
