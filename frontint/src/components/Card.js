@@ -1,9 +1,11 @@
-import React, { } from 'react'
-import {Link, NavLink} from 'react-router-dom'; 
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+
+const url = "http://localhost:4000/notes";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -40,15 +42,44 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-
 export default function Card() {
     const classes = useStyles();
+    const [newNote, setNewNote] = useState(
+        {title: '', content: ''}
+    )
+    const handleChange = (event) => {
+        setNewNote({...newNote, [event.target.name]: event.target.value})
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios.post(url, newNote)
+        .then(function(response){
+            console.log(response)
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+    }
     return (
-        <form className={classes.root}>
+        <form onSubmit={handleSubmit} className={classes.root}>
             <Paper className={classes.paper}>
-                <TextField className={classes.titleBox} />
-                <TextField multiline />
-                <Button className={classes.button}>Add Note</Button>
+                <TextField 
+                className={classes.titleBox}
+                name='title'
+                type='text'
+                value={newNote.title}
+                onChange={handleChange}
+                required
+                />
+                <TextField
+                 multiline
+                 name='content'
+                 type='text'
+                 value={newNote.content}
+                 onChange={handleChange}
+                 required
+                 />
+                <Button type='submit' className={classes.button}>Add Note</Button>
             </Paper>
         </form>
 
