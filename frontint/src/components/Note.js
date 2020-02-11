@@ -1,7 +1,13 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect  } from 'react'
+import axios from 'axios';
+import { Link, NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+
+const url = "http://localhost:4000/notes"
+
+
 const useStyles = makeStyles(theme => ({
     root: {
         margin: theme.spacing(1),
@@ -20,21 +26,43 @@ const useStyles = makeStyles(theme => ({
         variant: "contained",
         backgroundColor: "white",
         boxShadow: "none",
-        margin: 20
+        padding: 10,
+        margin: 10
     },
     noteArea: {
         textAlign: "left",
+    },
+    link: {
+        textDecoration: 'none'
     }
 }));
 
 export default function Note() {
     const classes = useStyles();
+
+    const [data, setData] = useState([]);
+    useEffect(async () => {
+        const fetchData = async () => {
+            const notes = await axios(url);
+            setData(notes.data);
+        }
+        fetchData();
+    }, [])
+    console.log(data)
+
     return (
-        <div className={classes.root}>
+        <div>
+        {data.map(note => (
+            <div className={classes.root}>
             <Paper className={classes.paper}>
-            <p className={classes.noteArea}>fbjdncks d cj cied chjfsdkfj kvdnkvdksn kcsdnfvdjndkn</p>
-                <Button className={classes.button}>View Note</Button>
+                <p className={classes.noteArea}>{note.title}</p>
+                <p className={classes.noteArea}>{note.content}</p>
+                <Link className={classes.link} to="/note">
+                    <Button className={classes.button}>View Note</Button>
+                </Link>
             </Paper>
+        </div>
+        ))}
         </div>
     )
 }

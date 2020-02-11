@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register"; 
 import Landing from "./pages/Landing"; 
 import axios from 'axios'; 
-import {Route, Link, NavLink} from 'react-router-dom'; 
+import {Route} from 'react-router-dom'; 
 
 function App() {
   return (
