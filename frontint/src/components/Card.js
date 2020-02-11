@@ -44,6 +44,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Card() {
     const classes = useStyles();
+    
     const [newNote, setNewNote] = useState(
         {title: '', content: ''}
     )

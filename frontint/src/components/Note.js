@@ -13,6 +13,10 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(1),
         spacing: [2, 4, 6, 8, 10]
     },
+    holder: {
+        height: 600,
+        overflow: "scroll",
+    },
     paper: {
         padding: theme.spacing(2),
         boxShadow: 'none',
@@ -51,7 +55,7 @@ export default function Note() {
     console.log(data)
 
     return (
-        <div>
+        <div className={classes.holder}>
         {data.map(note => (
             <div className={classes.root}>
             <Paper className={classes.paper}>
