@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import { mergeClasses } from '../../node_modules/@material-ui/styles';
 
 const url = "http://localhost:4000/notes"
 
@@ -41,9 +42,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function ViewNote(){
+    const classes = useStyles();
         return (
-            <div>
-                
+            <div className={classes.root}>
+                <Paper>
+                    <p>Title</p>
+                    <p>Content</p>
+                </Paper>
             </div>
         )
 }
