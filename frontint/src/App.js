@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from "./pages/Home"; 
-import Post from './pages/Post'; 
+import ViewNote from './components/ViewNote'; 
 import Login from "./pages/Login"; 
 import Register from "./pages/Register"; 
 import Landing from "./pages/Landing"; 
@@ -12,16 +12,15 @@ const url = "http://localhost:4000/notes"
 
 function App() {
   const [data, loading] = useFetch(url); 
-  console.log(data); 
   return (
     <div className="App">
     <Route 
      exact path="/"
-     render={props => <Home {...props} notes={data} />}
+     render={props => <Home {...props} notes={data} load={loading} />}
     />
     <Route 
-     path="/post/:id"
-     render={props => <Post {...props} note={data} />}
+     path="/note/:id"
+     render={props => <ViewNote {...props} note={data} />}
     />
     <Route 
      exact path="/landing"

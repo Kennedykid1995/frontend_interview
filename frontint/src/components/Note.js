@@ -42,27 +42,16 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Note() {
+const Note = props => {
     const classes = useStyles();
-
-    const [data, setData] = useState([]);
-    useEffect(async () => {
-        const fetchData = async () => {
-            const notes = await axios(url);
-            setData(notes.data);
-        }
-        fetchData();
-    }, [])
-    console.log(data)
-
     return (
         <div className={classes.holder}>
-        {data.map(note => (
+        {props.note.map(({id, title, content}) => (
             <div className={classes.root}>
             <Paper className={classes.paper}>
-                <p className={classes.noteArea}>{note.title}</p>
-                <p className={classes.noteArea}>{note.content}</p>
-                <Link to={`/note/${note.id}`} className={classes.link}>
+                <p className={classes.noteArea}>{title}</p>
+                <p className={classes.noteArea}>{content}</p>
+                <Link to={`/note/${id}`} className={classes.link}>
                     <Button className={classes.button}>View Note</Button>
                 </Link>
             </Paper>
@@ -71,3 +60,4 @@ export default function Note() {
         </div>
     )
 }
+export default Note; 

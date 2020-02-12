@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-
+import { useEdit } from "../Hooks/edit";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -39,14 +39,25 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function ViewNote(){
+const ViewNote = props => {
     const classes = useStyles();
-        return (
-            <div className={classes.root}>
-                <Paper>
-                    <p>Title</p>
-                    <p>Content</p>
-                </Paper>
-            </div>
-        )
+    const data = props.note;
+    const [storage, setStorage] = useState(data);
+    const url = window.location.pathname;
+    const identification = url.substring(url.lastIndexOf("/") + 1);
+    const [idData] = useEdit(`http://localhost:4000/notes/${identification}`);
+    console.log(idData, identification); 
+    return (
+        <>
+            {idData.map(({ id, title, content }) => (
+                <div className={classes.root}>
+                    <Paper>
+                        <p>{title}</p>
+                        <p>{content}</p>
+                    </Paper>
+                </div>
+            ))}
+        </>
+    )
 }
+export default ViewNote; 
