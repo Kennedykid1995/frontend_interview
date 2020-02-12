@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
     <Route 
-     exact path="/"
+     exact path="/home"
      render={props => <Home {...props} notes={data} load={loading} />}
     />
     <Route 
