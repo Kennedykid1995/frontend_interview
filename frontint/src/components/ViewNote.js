@@ -4,9 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import { mergeClasses } from '../../node_modules/@material-ui/styles';
 
-const url = "http://localhost:4000/notes"
 
 const useStyles = makeStyles(theme => ({
     root: {

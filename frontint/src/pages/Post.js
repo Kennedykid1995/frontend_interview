@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import ViewNote from "../components/ViewNote"; 
 
-export default class Post extends Component {
-    render() {
+export default function Post(){
+
         return (
             <div>
-                <ViewNote />
+                hello
             </div>
         )
     }
-}

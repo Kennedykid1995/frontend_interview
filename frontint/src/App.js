@@ -6,17 +6,22 @@ import Register from "./pages/Register";
 import Landing from "./pages/Landing"; 
 import axios from 'axios'; 
 import {Route} from 'react-router-dom'; 
+import {useFetch} from "./Hooks/fetch"; 
+
+const url = "http://localhost:4000/notes"
 
 function App() {
+  const [data, loading] = useFetch(url); 
+  console.log(data); 
   return (
     <div className="App">
     <Route 
      exact path="/"
-     render={props => <Home {...props} />}
+     render={props => <Home {...props} notes={data} />}
     />
     <Route 
-     exact path="/post"
-     render={props => <Post {...props} />}
+     path="/post/:id"
+     render={props => <Post {...props} note={data} />}
     />
     <Route 
      exact path="/landing"
