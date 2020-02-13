@@ -41,12 +41,31 @@ const useStyles = makeStyles(theme => ({
 
 const ViewNote = props => {
     const classes = useStyles();
+    const refreshPage = () => {
+        window.location.reload();
+    }
     const data = props.note;
-    const [storage, setStorage] = useState(data);
+    const [storage, setStorage] = useState(data); 
     const url = window.location.pathname;
     const identification = url.substring(url.lastIndexOf("/") + 1);
     const [idData] = useEdit(`http://localhost:4000/notes/${identification}`);
-    console.log(idData, identification);
+    const [editNote, setEditNote] = useState({ title: "", content: "" });
+    const useInputChange = event => {
+        const { name, value } = event.target;
+        setEditNote({ ...editNote, [name]: value });
+    };
+
+    const editANote = (e) => {
+        e.preventDefault();
+        console.log(editNote.title)
+        axios.put(`http://localhost:4000/notes/${identification}`, editNote)
+            .then(res => {
+                setEditNote({ editNote });
+                window.location.reload(); 
+            })
+            .catch(err => console.log(err))
+    }
+
     const deleteNote = e => {
         e.preventDefault();
         axios
@@ -55,23 +74,39 @@ const ViewNote = props => {
                 console.log(res.data);
                 axios.get("http://localhost:4000/notes").then(response => {
                     setStorage(...storage, response.data);
-                    console.log(response.data);
+                    window.location.reload(); 
                 });
             })
             .catch(err => {
                 console.log(err)
             })
     }
+
     return (
         <>
             {idData.map(({ id, title, content }) => (
                 <div className={classes.root}>
-                    <Paper>
-                        <p>{title}</p>
-                        <p>{content}</p>
-                        <Link to="/home">
-                            <button onClick={deleteNote}>Delete</button>
-                        </Link>
+                    <Paper key={id}>
+                        <input
+                            name="Title"
+                            defaultValue={title}
+                            onChange={useInputChange}
+                        />
+                        <input
+                            name="Content"
+                            defaultValue={content}
+                            onChange={useInputChange}
+                        />
+                        <div onClick={editANote}>
+                            <Link to="/home">
+                                <button>Add Revisions</button>
+                            </Link>
+                        </div>
+                        <div onClick={deleteNote}>
+                            <Link to="/home">
+                                <button>Delete</button>
+                            </Link>
+                        </div>
                     </Paper>
                 </div>
             ))}

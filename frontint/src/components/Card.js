@@ -55,6 +55,7 @@ export default function Card() {
         e.preventDefault()
         axios.post(url, newNote)
         .then(function(response){
+            window.location.reload(); 
             console.log(response)
         })
         .catch(function(error){
